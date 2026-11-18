@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f0f13">
+  <title>Wallpaper Pro</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+    body { background-color: #0f0f13; color: #ffffff; padding-bottom: 40px; }
+    header { background: #181820; padding: 18px; text-align: center; position: sticky; top: 0; z-index: 10; border-bottom: 1px solid #2a2a35; }
+    header h1 { font-size: 20px; letter-spacing: 0.5px; color: #a855f7; }
+    .filtros { display: flex; justify-content: center; gap: 10px; padding: 15px; }
+    .btn-filtro { background: #23232e; color: #fff; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; cursor: pointer; }
+    .btn-filtro.ativo { background: #a855f7; font-weight: bold; }
+    .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 15px; max-width: 600px; margin: 0 auto; }
+    .card { background: #181820; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #2a2a35; }
+    .card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .card.perfil img { height: 160px; border-radius: 50%; width: 140px; height: 140px; margin: 15px auto 5px; }
+    .btn-baixar { background: #a855f7; color: #fff; text-align: center; text-decoration: none; padding: 10px; font-size: 14px; font-weight: bold; margin: 10px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Wallpaper Pro</h1>
+  </header>
+
+  <div class="filtros">
+    <button class="btn-filtro ativo" onclick="filtrar('todos', this)">Todos</button>
+    <button class="btn-filtro" onclick="filtrar('wallpaper', this)">Wallpapers</button>
+    <button class="btn-filtro" onclick="filtrar('perfil', this)">Foto de Perfil</button>
+  </div>
+
+  <div class="galeria" id="galeria">
+    <!-- Exemplo Wallpaper 1 -->
+    <div class="card wallpaper">
+      <img src="https://pexels.com" alt="Cidade Neon">
+      <a class="btn-baixar" href="https://pexels.com" target="_blank" download>Baixar HD</a>
+    </div>
+
+    <!-- Exemplo Wallpaper 2 -->
+    <div class="card wallpaper">
+      <img src="https://pexels.com" alt="Montanhas Noite">
+      <a class="btn-baixar" href="https://pexels.com" target="_blank" download>Baixar HD</a>
+    </div>
+
+    <!-- Exemplo Foto de Perfil 1 -->
+    <div class="card perfil">
+      <img src="https://pexels.com" alt="Perfil Cachoeira">
+      <a class="btn-baixar" href="https://pexels.com" target="_blank" download>Baixar Perfil</a>
+    </div>
+
+    <!-- Exemplo Foto de Perfil 2 -->
+    <div class="card perfil">
+      <img src="https://pexels.com" alt="Perfil Aurora">
+      <a class="btn-baixar" href="https://pexels.com" target="_blank" download>Baixar Perfil</a>
+    </div>
+  </div>
+
+  <script>
+    function filtrar(tipo, botao) {
+      document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('ativo'));
+      botao.classList.add('ativo');
+      document.querySelectorAll('.card').forEach(card => {
+        if (tipo === 'todos' || card.classList.contains(tipo)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
